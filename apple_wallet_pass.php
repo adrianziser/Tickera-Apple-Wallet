@@ -10,6 +10,10 @@
  * License: GNU General Public License v3.0
  * License URI: http://www.gnu.org/licenses/gpl-3.0.html
  */
+
+ require_once '../tickera-event-ticketing-system/includes/classes/class.event.php';
+ require_once '../tickera-event-ticketing-system/includes/classes/class.ticket.php';
+
 require 'vendor/autoload.php';
 use Passbook\PassFactory;
 use Passbook\Pass\Barcode;
@@ -255,9 +259,10 @@ if ( ! function_exists( 'tc_get_wallet_pass_for_ticket' ) ) {
 		$ticket_code = $events['ticket_code'][0];
 		$first_name = $events['first_name'][0];
 		$last_name = $events['last_name'][0];
+
 		$event_obj = new TC_Event( $event_id );
 		$location_obj = get_post_meta( $event_id, '', false );
-		$ticket = new TC_Ticket( $ticket_id );
+        $ticket = new Tickera\TC_Ticket( $tickets_id );
 
 		// fwrite( $fp, PHP_EOL . 'first_name = ' . $first_name );
 		// fwrite( $fp, PHP_EOL . 'ticket_code = ' . $ticket_code );
